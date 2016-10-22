@@ -1,0 +1,9 @@
+{% if latest_tasks %}
+  <ul>
+    {% for task in latest_tasks %}
+      <li><h5>{{ task.task_heading }}</h5> {{ task.task_description }}</li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No Tasks</p>
+{% endif %}
