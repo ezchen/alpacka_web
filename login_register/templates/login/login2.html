@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static "styles.css" %}">
 <div id="login" class="container">
 	<div class="row main">
 		<div class="panel-heading">
@@ -45,4 +47,5 @@
 
 {% load static %}
 <script src="{% static "app.js" %}"></script>
+
 {% endblock %}

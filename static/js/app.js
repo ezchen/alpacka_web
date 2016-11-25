@@ -29,7 +29,12 @@ var LoginView = Backbone.Marionette.View.extend({
 	    "processData": false,
 	    "contentType": false,
 	    "mimeType": "multipart/form-data",
-	    "data": form
+	    "data": form,
+      "statusCode": {
+        200: function() {
+          window.location="/dashboard"
+        }
+      }
 	}
 
 	$.ajax(settings).done(function (response) {
