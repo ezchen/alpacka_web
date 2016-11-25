@@ -15,10 +15,10 @@ class AccountManager(BaseUserManager):
             raise ValueError('Users must have a valid phone')
 
         if not kwargs.get('first_name'):
-            raise ValueError('Users must have a valid phone')
+            raise ValueError('Users must have a first name')
 
         if not kwargs.get('last_name'):
-            raise ValueError('Users must have a valid phone')
+            raise ValueError('Users must have a last name')
 
         account = self.model(
             email=self.normalize_email(email),
@@ -45,6 +45,7 @@ class Account(AbstractBaseUser):
     phone = PhoneNumberField(unique=True)
     first_name = models.CharField(max_length=40)
     last_name = models.CharField(max_length=40)
+    is_courier = models.BooleanField(default=False)
 
     is_admin = models.BooleanField(default=False)
 

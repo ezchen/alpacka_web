@@ -19,19 +19,26 @@ from django.contrib import admin
 
 from rest_framework_nested import routers
 from authentication.views import AccountViewSet
+from tasks.views import AccountTasksViewSet, TaskViewSet
 from django.conf.urls.static import static
 
 
 
 router = routers.SimpleRouter()
 router.register(r'accounts', AccountViewSet)
+router.register(r'tasks', TaskViewSet)
+router.register('accounts/my_account/my_tasks', AccountTasksViewSet)
 
 urlpatterns = [
-    url(r'^tasks/', include('tasks.urls')),
+    url(r'^', include('home_page.urls')),
     url(r'^', include('login_register.urls')),
     url(r'^admin/', admin.site.urls),
 
     url(r'^api/v1/', include(router.urls)),
+
+    url(r'^api/v1/courier/', include('tasks.urls')),
+
+    # login, token refresh, verify token
     url(r'^api/v1/auth/', include('authentication.urls')),
 
     # TODO: make catchall route  url('^.*$', IndexView.as_view(), name='index'),

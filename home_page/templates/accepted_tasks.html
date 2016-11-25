@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<script type="x-template/underscore" id="task_item">
+  <div class="panel panel-default">
+    <div class="panel-body">
+
+      <div class="row">
+
+        <div class="col-xs-12">
+          <div class="row">
+            <strong class="col-xs-10"><%- task_heading %></strong>
+            <small class="col-xs-2 text-right">$<%- task_price %></small>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12">
+              <%- task_description %>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="button" class="btn btn-danger">Cancel</button>
+        </div>
+      </div>
+    </div> <!-- panel-body -->
+  </div> <!-- Panel -->
+</script>
+
+<div class="container">
+  <div id="task_list">
+  </div>
+</div>
+
+{% load static %}
+<script src="{% static "accepted_tasks.js" %}"></script>
+
+{% endblock %}

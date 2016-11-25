@@ -38,7 +38,8 @@ class AccountChangeForm(forms.ModelForm):
 
     class Meta:
         model = Account
-        fields = ('email', 'password', 'first_name', 'last_name', 'phone', 'is_admin')
+        fields = ('email', 'password',
+        'first_name', 'last_name', 'phone', 'is_admin', 'is_courier')
 
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.
@@ -64,7 +65,7 @@ class AccountAdmin(BaseUserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ('email', 'is_admin', "_requestedTasks", "_acceptedTasks")
+    list_display = ('email', 'is_admin', "_requestedTasks", "_acceptedTasks", "is_courier")
     list_filter = ('is_admin',)
 
     inlines = [
@@ -73,7 +74,7 @@ class AccountAdmin(BaseUserAdmin):
     ]
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ('first_name', 'last_name', 'phone')}),
+        ('Personal info', {'fields': ('first_name', 'last_name', 'phone', 'is_courier')}),
         ('Permissions', {'fields': ('is_admin',)}),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin

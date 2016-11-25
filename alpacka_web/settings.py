@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-
+import datetime
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -28,6 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 SESSION_COOKIE_HTTPONLY = True
+
+SESSION_COOKIE_PATH = '/;HttpOnly'
 
 # Application definition
 
@@ -50,10 +52,11 @@ INSTALLED_APPS = [
 ]
 
 REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+       'rest_framework.permissions.AllowAny',
+    ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-        'authentication.jwt_authentication.JSONWebTokenAuthenticationQS'
+        'authentication.jwt_authentication.JSONWebTokenAuthenticationCookie'
     ),
 }
 
@@ -129,6 +132,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # DjangoRestFramework-JWT preferences
 JWT_AUTH = {
     'JWT_ALLOW_REFRESH': True,
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=604800),
 }
 
 
