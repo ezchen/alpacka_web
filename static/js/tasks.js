@@ -5,11 +5,16 @@ var Tasks = Backbone.Collection.extend({
 
 var data = new Tasks([]);
 
+var EmptyItemView = Backbone.Marionette.View.extend({
+  template: '#empty_state',
+  tagname: 'div'
+})
+
 var TaskItemView = Backbone.Marionette.View.extend({
   template: '#task_item',
   tagname: 'div',
   events: {
-    'click .btn': 'accept_task',
+    'click .accept_task': 'accept_task',
   },
   modelEvents: {
     "change": function() { this.render(); }
@@ -25,7 +30,10 @@ var TaskItemView = Backbone.Marionette.View.extend({
       "async": true,
       "url": "/api/v1/courier/tasks",
       "method": "PATCH",
-      "data": jsonData
+      "data": jsonData,
+      "success": function(data, textStatus, jqXHR) {
+        window.location = "/accepted_tasks"
+      }
     }
   	$.ajax(settings).done(function (response) {
       console.log(response);
@@ -40,7 +48,8 @@ var TaskListView = Backbone.Marionette.CollectionView.extend({
 });
 
 var TaskListView = new TaskListView({
-  collection: data
+  collection: data,
+  emptyView: EmptyItemView
 });
 
 $(document).ready(function() {
@@ -60,6 +69,6 @@ $(document).ready(function() {
 
 	$.ajax(settings).done(function (response) {
       _.each(response, function(el) {data.push(el);})
+      TaskListView.render();
 	});
-  TaskListView.render();
 });

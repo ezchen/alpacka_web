@@ -1,38 +1,41 @@
-{% extends "base.html" %}
+{% extends "base_navbar.html" %}
 
 {% block content %}
 <script type="x-template/underscore" id="task_item">
-  <div class="panel panel-default">
-    <div class="panel-body">
+<div class="card hoverable" style="overflow: hidden;">
+  <div class="card-content">
+    <div class="row">
+    <span class="col s10 card-title activator grey-text text-darken-4"><%- task_heading %></span>
 
-      <div class="row">
+    <p class="price card-title col s2">$<%- task_price %></p>
+    </div>
+    <p><%- task_description %></p>
+  </div>
 
-        <div class="col-xs-12">
-          <div class="row">
-            <strong class="col-xs-10"><%- task_heading %></strong>
-            <small class="col-xs-2 text-right">$<%- task_price %></small>
-          </div>
+  <div class="card-action">
+    <a href="javascript:;" class="blue-text accept_task">Accept Task</a>
+  </div>
+</div>
+</script>
+<script type="x-template/underscore" id="empty_state">
+<div class="row">
+  <div class="empty_state center-align col m6 offset-m3">
+    <h5>No Tasks Posted</h5>
+    {% load static %}
+    <img src="{% static "box.png" %}" alt="My image"/>
+    <p>Aw... Looks like there are no tasks posted currently. Check back later or click <span class="green-text">"Post Task"</span>
+      to create a task of your own.</p>
+   <a href="/post_task" class="waves-effect waves-light btn">Post Task</a>
 
-          <div class="row">
-            <div class="col-xs-12">
-              <%- task_description %>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="row">
-        <div class="col-xs-12">
-          <button type="button" class="btn btn-primary">Accept Task</button>
-        </div>
-      </div>
-
-    </div> <!-- panel-body -->
-  </div> <!-- Panel -->
+  </div>
+</div>
 </script>
 
 <div class="container">
+  <div class="page-header">
+    <h4>Find Tasks</h4>
+    <div class="divider"></div>
+  </div>
   <div id="task_list">
   </div>
 </div>

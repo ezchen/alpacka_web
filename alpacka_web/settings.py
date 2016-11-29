@@ -162,7 +162,9 @@ STATICFILES_DIRS = [
     os.path.join(STATIC_ROOT, 'admin/fonts'),
     os.path.join(STATIC_ROOT, 'admin/img'),
     os.path.join(STATIC_ROOT, 'admin/js'),
-    os.path.join(STATIC_ROOT, 'js/')
+    os.path.join(STATIC_ROOT, 'js/'),
+    os.path.join(STATIC_ROOT, 'images/'),
+    os.path.join(STATIC_ROOT, 'intl-tel-input-9.2.0'),
 ]
 
 AUTH_USER_MODEL = 'authentication.Account'

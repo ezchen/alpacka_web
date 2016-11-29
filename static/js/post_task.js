@@ -29,8 +29,10 @@ var PostTaskView = Backbone.Marionette.View.extend({
       	    "contentType": false,
       	    "mimeType": "multipart/form-data",
       	    "data": form,
+            "success": function(data, textStatus, jqXHR) {
+              window.location = "/dashboard"
+            }
       	}
-
       	$.ajax(settings).done(function (response) {
                   console.log(response);
       	});
