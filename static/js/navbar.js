@@ -7,6 +7,7 @@ var NavbarView = Backbone.Marionette.View.extend({
     },
 
     logout(event) {
+      console.log("logout");
       var settings = {
         "async": true,
         "url": "/api/v1/auth/logout/",

@@ -13,12 +13,13 @@ var RegisterView = Backbone.Marionette.View.extend({
         var phone = $('#register').find('input[name="phone"]').val();
         var first_name = $('#register').find('input[name="first_name"]').val();
         var last_name = $('#register').find('input[name="last_name"]').val();
+        var dial_code = $("#phone").intlTelInput("getSelectedCountryData").dialCode;
 
 
         var form = new FormData();
         form.append("email", email);
         form.append("password", password);
-        form.append("phone", "+1" + phone);
+        form.append("phone", "+" + dial_code + phone);
         form.append("first_name", first_name);
         form.append("last_name", last_name);
 
@@ -35,10 +36,8 @@ var RegisterView = Backbone.Marionette.View.extend({
       	    "contentType": false,
       	    "mimeType": "multipart/form-data",
       	    "data": form,
-            "statusCode": {
-              200: {
-                window.location="/dashboard"
-              }
+            "success": function() {
+              window.location="/dashboard"
             }
       	}
 
@@ -52,5 +51,6 @@ var RegisterView = Backbone.Marionette.View.extend({
 
 });
 
+$("#phone").intlTelInput();
 var myView = new RegisterView();
 myView.render();

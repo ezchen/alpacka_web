@@ -1,29 +1,35 @@
-{% extends "base.html" %}
+{% extends "base_navbar.html" %}
 
 {% block content %}
 <div id="post_task" class="container">
-  <h1>Post Task</h1>
-  <div class="panel panel-default">
-  <div class="panel-body">
-    <form>
-      <div class="form-group">
-        <label for="price">Price</label>
-        <input type="number" step="any" class="form-control" name="price" id="price" placeholder="Enter price">
+  <h3>Post Task</h3>
+    <div class="row">
+      <div class="col s12">
+        <form>
+          <div class="row">
+            <div class="input-field col s2">
+              <input type="number" step="any" class="validate" name="price" id="price" >
+              <label for="price">Price</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input type="text" class="validate" name="task_heading" id="Task_Heading">
+              <label for="task_heading">Task Heading</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="Task_Description" name="task_description" rows="3" class="materialize-textarea"></textarea>
+              <label for="Task_description">Task Description</label>
+            </div>
+          </div>
+        	<div class="form-group ">
+        		<button type="button" id="btn-post" class="btn btn-primary btn-lg btn-block login-button">Post Task</button>
+        	</div>
+        </form>
       </div>
-      <div class="form-group">
-        <label for="Task_Heading">Task Heading</label>
-        <input type="text" class="form-control" name="task_heading" id="Task_Heading" placeholder="Enter heading">
-      </div>
-      <div class="form-group">
-        <label for="Task_Description">Task Description</label>
-        <textarea class="form-control" name="task_description" id="Task_Description" rows="3" placeholder="Enter description"></textarea>
-      </div>
-    	<div class="form-group ">
-    		<button type="button" id="btn-post" class="btn btn-primary btn-lg btn-block login-button">Post Task</button>
-    	</div>
-    </form>
-  </div>
-  </div>
+    </div>
 </div>
 
 

@@ -3,71 +3,56 @@
 {% block content %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static "styles.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "build/css/intlTelInput.css" %} ">
 <div id="register" class="container">
 	<div class="row main">
-		<div class="panel-heading">
-             <div class="panel-title text-center">
-             		<h1 class="title">Alpacka</h1>
-             		<hr />
-             	</div>
-          </div>
+   <div class="panel-title center-align">
+   		<h3 class="white-text">Alpacka</h3>
+   		<hr />
+   	</div>
 		<div class="main-login main-center">
-			<form class="form-horizontal" method="post" action="#">
+			<form method="post" action="#">
 
-        <div class="form-group">
-          <label for="name" class="cols-sm-2 control-label">First Name</label>
-          <div class="cols-sm-10">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-              <input type="text" class="form-control" name="first_name" id="first_name"  placeholder="Enter your first name"/>
-            </div>
-          </div>
+        <div class="row">
+					<div class="input-field col s6">
+						<i class="material-icons prefix">account_circle</i>
+            <input type="text" class="validate" name="first_name" id="first_name">
+            <label for="first_name">First Name</label>
+					</div>
+					<div class="input-field col s6">
+            <input type="text" class="validate" name="last_name" id="last_name">
+            <label for="last_name">Last Name</label>
+					</div>
         </div>
 
-        <div class="form-group">
-          <label for="name" class="cols-sm-2 control-label">Last Name</label>
-          <div class="cols-sm-10">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-              <input type="text" class="form-control" name="last_name" id="last_name"  placeholder="Enter your last name"/>
-            </div>
-          </div>
-        </div>
+				<div class="row">
+					<div class="input-field col s12">
+						<i class="material-icons prefix">email</i>
+            <input type="email" class="validate" name="email" id="email">
+            <label for="email">Tufts Email</label>
+					</div>
+				</div>
 
-				<div class="form-group">
-					<label for="email" class="cols-sm-2 control-label">Tufts Email</label>
-					<div class="cols-sm-10">
-						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-							<input type="text" class="form-control" name="email" id="email"  placeholder="example@tufts.edu"/>
+				<div class="row">
+					<div class="input-field col s12">
+						<i class="material-icons prefix">phone</i>
+            <input type="tel" class="validate phone-input" name="phone">
+            <label class="phone-field" for="phone">Phone</label>
+						<div class="" id="phone">
 						</div>
 					</div>
 				</div>
 
-        <div class="form-group">
-          <label for="phone" class="cols-sm-2 control-label">Phone</label>
-          <div class="cols-sm-10">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-phone fa" aria-hidden="true"></i></span>
-              <input type="text" class="form-control" name="phone" id="phone"  placeholder="Enter your Phone Number"/>
-            </div>
-          </div>
-        </div>
-
-				<div class="form-group">
-					<label for="password" class="cols-sm-2 control-label">Password</label>
-					<div class="cols-sm-10">
-						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-							<input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
-						</div>
+				<div class="row">
+					<div class="input-field col s12">
+						<i class="material-icons prefix">lock</i>
+            <input type="password" class="validate" name="password" id="password">
+            <label for="password">Password</label>
 					</div>
 				</div>
 
-				<div class="form-group ">
-					<button type="button" id="btn-login" class="btn btn-primary btn-lg btn-block login-button">Register</button>
-				</div>
-				<div class="login-register">
+				<button type="button" id="btn-login" class="btn center-block btn-block login-button">Register</button>
+				<div class="center-align login-register">
 		            <a href="/login">Login</a>
 		         </div>
 			</form>

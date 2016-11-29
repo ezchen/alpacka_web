@@ -1,24 +1,51 @@
-{% extends "base.html" %}
+{% extends "base_navbar.html" %}
 
 {% block content %}
 <script type="x-template/underscore" id="task_item">
-<div class="col-md-6 col-md-offset-3">
-    <div class="card">
-        <div class="card-title">
-            <strong><%- task_heading %></strong>
-        </div>
-        <div class="card-content">
-            <p><%- task_description %></p>
-        </div>
+<div class="card hoverable" style="overflow: hidden;">
+  <div class="card-content">
+    <div class="row">
+    <span class="col s10 card-title activator grey-text text-darken-4"><%- task_heading %></span>
 
-        <div class="card-action">
-            <a href="" class="cancel" >Cancel Task</a>
-        </div>
+    <p class="price card-title col s2">$<%- task_price %></p>
     </div>
+    <p><%- task_description %></p>
+  </div>
+  <div class="card-reveal" style="display: none; transform: translateY(0px);">
+    <% if (courier) { %>
+      <span class="card-title grey-text text-darken-4">Task Accepted<i class="material-icons right">close</i></span>
+      <p><%- courier.first_name %> <%- courier.last_name %></p>
+      <p><%- courier.phone %></p>
+    <% } else { %>
+      <span class="card-title grey-text text-darken-4">Task Not Accepted Yet<i class="material-icons right">close</i></span>
+    <% } %>
+  </div>
+
+  <div class="card-action">
+    <a href="javascript:;" class="activator">Courier Info</a>
+    <a href="javascript:;" class="red-text cancel">Cancel Task</a>
+  </div>
+</div>
+</script>
+<script type="x-template/underscore" id="empty_state">
+<div class="row">
+  <div class="empty_state center-align col m6 offset-m3">
+    <h5>You Have No Tasks</h5>
+    {% load static %}
+    <img src="{% static "task_done.png" %}" alt="My image"/>
+    <p>Looks like all of your tasks have been completed! Click <span class="green-text">"Post Task"</span>
+      to create a new task.</p>
+   <a href="/post_task" class="waves-effect waves-light btn">Post Task</a>
+
+  </div>
 </div>
 </script>
 
 <div class="container">
+  <div class="page-header">
+    <h4>My Tasks</h4>
+    <div class="divider"></div>
+  </div>
   <div id="task_list">
   </div>
 </div>

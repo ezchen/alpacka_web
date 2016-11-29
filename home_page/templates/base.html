@@ -5,7 +5,8 @@
   </head>
   <body>
     {% include 'javascript.html' %}
-    {% include 'navbar.html' %}
+    {% block navbar %}
+    {% endblock %}
     {% block content%}
     {% endblock %}
     {% load static %}

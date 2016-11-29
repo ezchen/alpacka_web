@@ -67,6 +67,7 @@ class AccountViewSet(viewsets.ModelViewSet):
     lookup_field = 'email'
     queryset = Account.objects.all()
     serializer_class = AccountSerializer
+    authentication_classes = []
 
     @overrides
     def get_permissions(self):

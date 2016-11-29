@@ -1,37 +1,52 @@
-{% extends "base.html" %}
+{% extends "base_navbar.html" %}
 
 {% block content %}
 <script type="x-template/underscore" id="task_item">
-  <div class="panel panel-default">
-    <div class="panel-body">
+<div class="card hoverable" style="overflow: hidden;">
+  <div class="card-content">
+    <div class="row">
+    <span class="col s10 card-title activator grey-text text-darken-4"><%- task_heading %></span>
 
-      <div class="row">
+    <p class="price card-title col s2">$<%- task_price %></p>
+    </div>
+    <p><%- task_description %></p>
+  </div>
 
-        <div class="col-xs-12">
-          <div class="row">
-            <strong class="col-xs-10"><%- task_heading %></strong>
-            <small class="col-xs-2 text-right">$<%- task_price %></small>
-          </div>
+  <div class="card-reveal" style="display: none; transform: translateY(0px);">
+    <% if (author) { %>
+      <span class="card-title grey-text text-darken-4">Task Poster Info<i class="material-icons right">close</i></span>
+      <p><%- author.first_name %> <%- author.last_name %></p>
+      <p><%- author.phone %></p>
+    <% } else { %>
+      <span class="card-title grey-text text-darken-4">No Author<i class="material-icons right">close</i></span>
+    <% } %>
+  </div>
 
-          <div class="row">
-            <div class="col-xs-12">
-              <%- task_description %>
-            </div>
-          </div>
-        </div>
+  <div class="card-action">
+    <a href="javascript:;" class="activator">Task Poster Info</a>
+    <a href="javascript:;" class="red-text cancel_task">Cancel Task</a>
+  </div>
+</div>
+</script>
+<script type="x-template/underscore" id="empty_state">
+<div class="row">
+  <div class="empty_state center-align col m6 offset-m3">
+    <h5>No Tasks</h5>
+    {% load static %}
+    <img src="{% static "search.png" %}" alt="My image"/>
+    <p>Looks like you completed all of the tasks you have accepted! Click <span class="purple-text darken-2">"Find Tasks"</span>
+      to accept more tasks.</p>
+   <a href="/tasks" class="purple darken-2 waves-effect waves-light btn">Find Tasks</a>
 
-      </div>
-
-      <div class="row">
-        <div class="col-xs-12">
-          <button type="button" class="btn btn-danger">Cancel</button>
-        </div>
-      </div>
-    </div> <!-- panel-body -->
-  </div> <!-- Panel -->
+  </div>
+</div>
 </script>
 
 <div class="container">
+  <div class="page-header">
+    <h4>Accepted Tasks</h4>
+    <div class="divider"></div>
+  </div>
   <div id="task_list">
   </div>
 </div>
