@@ -33,7 +33,7 @@ class AccountManager(BaseUserManager):
         return account
 
     def create_superuser(self, email, password, **kwargs):
-        account = self.create_user(email, password, kwargs)
+        account = self.create_user(email, password, **kwargs)
 
         account.is_admin = True
         account.save()
@@ -45,7 +45,7 @@ class Account(AbstractBaseUser):
     phone = PhoneNumberField(unique=True)
     first_name = models.CharField(max_length=40)
     last_name = models.CharField(max_length=40)
-    is_courier = models.BooleanField(default=False)
+    is_courier = models.BooleanField(default=True)
 
     is_admin = models.BooleanField(default=False)
 
