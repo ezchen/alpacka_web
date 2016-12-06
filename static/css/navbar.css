@@ -2,6 +2,12 @@ body {
     padding-top: 85px;
     background-color: #f9fafb;
 }
+
+#logo {
+  height: 48px;
+  margin-top: 6px;
+  margin-right: 12px;
+}
 .row > .empty_state {
     position: relative;
     top: 20%;

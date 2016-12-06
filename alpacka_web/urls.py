@@ -21,7 +21,7 @@ from rest_framework_nested import routers
 from authentication.views import AccountViewSet
 from tasks.views import AccountTasksViewSet, TaskViewSet
 from django.conf.urls.static import static
-
+from django.views.generic.base import RedirectView
 
 
 router = routers.SimpleRouter()
@@ -42,6 +42,7 @@ urlpatterns = [
     url(r'^api/v1/auth/', include('authentication.urls')),
 
     # TODO: make catchall route  url('^.*$', IndexView.as_view(), name='index'),
+    url(r'^$', RedirectView.as_view(url="/dashboard", permanent=False), name="index")
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
