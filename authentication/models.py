@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import BaseUserManager
 from phonenumber_field.modelfields import PhoneNumberField
+from random import randint
+from datetime import datetime
 
 # Custom User Account
 
@@ -27,6 +29,7 @@ class AccountManager(BaseUserManager):
             last_name=kwargs.get('last_name')
         )
         account.set_password(password)
+        account.set_phone_auth_code()
         account.save()
 
         print('finish create user')
@@ -46,6 +49,14 @@ class Account(AbstractBaseUser):
     first_name = models.CharField(max_length=40)
     last_name = models.CharField(max_length=40)
     is_courier = models.BooleanField(default=True)
+
+    phone_auth_code = models.IntegerField(blank=True, null=True)
+    phone_verified = models.BooleanField(default=False)
+    phone_verification_date = models.DateTimeField(blank=True, null=True)
+
+    email_auth_code = models.CharField(max_length=100, blank=True, default='')
+    email_verified = models.BooleanField(default=False)
+    email_verification_date = models.DateTimeField(blank=True, null=True)
 
     is_admin = models.BooleanField(default=False)
 
@@ -79,3 +90,17 @@ class Account(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
         return self.is_admin
+
+    def set_phone_auth_code(self):
+        self.phone_auth_code = randint(1000, 9999)
+        return self.phone_auth_code
+
+    def validate_phone_auth_code(self, code):
+        phone_matches = self.phone_auth_code == code
+
+        if phone_matches:
+            self.phone_verified = True
+            self.phone_verification_date = datetime.now()
+            self.save()
+
+        return phone_matches

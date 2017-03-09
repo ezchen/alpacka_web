@@ -20,8 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ckihu%+oy8f07r4+2$uf-hl+cxs#y^_$7-(+qorteac3tn3*vu'
-
+SECRET_KEY = 'SECRET'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -42,6 +41,8 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'rest_framework',
     'rest_framework_jwt',
+    'django_twilio',
+    'twilio_helper',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -109,6 +110,11 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+TWILIO_ACCOUNT_SID = 'SECRET'
+TWILIO_AUTH_TOKEN = 'SECRET'
+TWILIO_PHONE = 'SECRET'
+
 
 
 # Password validation

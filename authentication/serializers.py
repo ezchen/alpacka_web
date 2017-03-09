@@ -14,8 +14,9 @@ class AccountSerializer(serializers.ModelSerializer):
         read_only_fields = ('created_at', 'updated_at')
 
     def create(self, validated_data):
-        print('In AccountSerializer.create')
-        return Account.objects.create_user(**validated_data)
+        account = Account.objects.create_user(**validated_data)
+
+        return account
 
     def update(self, instance, validated_data):
         # These would have updated the username if we had them

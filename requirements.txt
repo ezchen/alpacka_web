@@ -3,3 +3,5 @@ djangorestframework==3.4.7
 djangorestframework-jwt==1.8.0
 django-phonenumber-field==1.1.0
 overrides==1.7
+django-twilio
+authy

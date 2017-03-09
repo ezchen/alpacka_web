@@ -65,7 +65,7 @@ class AccountAdmin(BaseUserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ('email', 'is_admin', "_requestedTasks", "_acceptedTasks", "is_courier")
+    list_display = ('email', 'is_admin', "_requestedTasks", "_acceptedTasks", "is_courier", "phone_auth_code")
     list_filter = ('is_admin',)
 
     inlines = [
