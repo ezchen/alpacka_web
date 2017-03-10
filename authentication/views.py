@@ -14,7 +14,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework_jwt.settings import api_settings
 
 from authentication.models import Account
-from authentication.permissions import IsAccountOwner
+from authentication.permissions import IsAccountOwner, IsPhoneVerified, IsEmailVerified
 from authentication.serializers import AccountSerializer
 from authentication.jwt_authentication import JSONWebTokenAuthenticationCookie
 
@@ -38,7 +38,7 @@ def setCookie(account, response):
 
 class VerifyPhone(APIView):
     serializer_class = AccountSerializer
-    authentication_classes = []
+    authentication_classes = [JSONWebTokenAuthenticationCookie]
 
     def post(self, request, format=None):
         data = request.data
@@ -81,10 +81,14 @@ class VerifyPhone(APIView):
         user_phone = account.phone.raw_input
         if user_phone != phone:
             valid_input = False
-            message = "Email and phone do not match"
+            return Response({
+                'status': 'Unauthorized',
+                'message': 'Phone and Email do not match'
+            }, status=status.HTTP_400_BAD_REQUEST)
 
         # Make sure code matches
         phone_validated = account.validate_phone_auth_code(verification_code)
+        import pdb; pdb.set_trace()
 
         if phone_validated:
             return Response({
@@ -94,7 +98,7 @@ class VerifyPhone(APIView):
         else:
             return Response({
                 'status': 'Unauthorized',
-                'message': "Phone number code is incorrect"
+                'message': "Auth code is incorrect"
             }, status=status.HTTP_400_BAD_REQUEST)
 
 class AuthLogout(APIView):

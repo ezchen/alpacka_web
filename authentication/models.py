@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import BaseUserManager
 from phonenumber_field.modelfields import PhoneNumberField
 from random import randint
-from datetime import datetime
+from django.utils import timezone
 
 # Custom User Account
 
@@ -96,11 +96,11 @@ class Account(AbstractBaseUser):
         return self.phone_auth_code
 
     def validate_phone_auth_code(self, code):
-        phone_matches = self.phone_auth_code == code
+        phone_matches = self.phone_auth_code == int(code)
 
         if phone_matches:
             self.phone_verified = True
-            self.phone_verification_date = datetime.now()
+            self.phone_verification_date = timezone.now()
             self.save()
 
         return phone_matches

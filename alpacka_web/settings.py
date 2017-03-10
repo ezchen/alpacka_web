@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 import datetime
+from alpacka_web import secret_settings
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -20,7 +21,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'SECRET'
+SECRET_KEY = secret_settings.SECRET_KEY
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -100,20 +102,11 @@ WSGI_APPLICATION = 'alpacka_web.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'alpacka',
-        'USER': 'eric',
-        'PASSWORD': 'mypassword',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
-}
+DATABASES = secret_settings.DATABASES
 
-TWILIO_ACCOUNT_SID = 'SECRET'
-TWILIO_AUTH_TOKEN = 'SECRET'
-TWILIO_PHONE = 'SECRET'
+TWILIO_ACCOUNT_SID = secret_settings.TWILIO_ACCOUNT_SID
+TWILIO_AUTH_TOKEN = secret_settings.TWILIO_AUTH_TOKEN
+TWILIO_PHONE = secret_settings.TWILIO_PHONE
 
 
 
