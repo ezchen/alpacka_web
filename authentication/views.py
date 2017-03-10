@@ -36,11 +36,15 @@ def setCookie(account, response):
     token = jwt_encode_handler(payload)
     response.set_cookie('jwt', token, httponly=True)
 
-class VerifyPhone(APIView):
-    serializer_class = AccountSerializer
-    authentication_classes = [JSONWebTokenAuthenticationCookie]
+def create_400_response(status_message, message):
+    return Response({
+        'status': status_message,
+        'message': message
+    }, status=status.HTTP_400_BAD_REQUEST)
 
-    def post(self, request, format=None):
+class VerificationHelper:
+    @staticmethod
+    def verify_input_not_null(self, request):
         data = request.data
 
         email = data.get('email', None)
@@ -56,39 +60,48 @@ class VerifyPhone(APIView):
             message = 'email missing'
         if phone is None:
             valid_input = False
-            'phone missing'
+            message = 'phone missing'
         if verification_code is None:
             valid_input = False
-            'verification_code missing'
+            message = 'verification_code missing'
 
         if not valid_input:
-            return Response({
-                'status': 'Unauthorized',
-                'message': "Missing input: %s" % message
-            }, status=status.HTTP_400_BAD_REQUEST)
+            return (False, "Missing input %s" % message)
+        else:
+            return (True, "All input is NOT None")
+
+class VerifyPhone(APIView):
+    serializer_class = AccountSerializer
+    authentication_classes = [JSONWebTokenAuthenticationCookie]
+
+    def post(self, request, format=None):
+        data = request.data
+
+        email = data.get('email', None)
+        phone = data.get('phone', None)
+        verification_code = data.get('verification_code', None)
+
+        correct_input_and_message = VerificationHelper.verify_input_not_null(self, request)
+
+        valid_input = correct_input_and_message[0]
+        message = correct_input_and_message[1]
+
+        if not valid_input:
+            return create_400_response('Invalid Input', message)
 
         # Verify  Email exists
         try:
             account = Account.objects.get(email=email)
         except Account.DoesNotExist:
-            valid_input = False
-            return Response({
-                'status': 'Unauthorized',
-                'message': "Email does not exist"
-            }, status=status.HTTP_400_BAD_REQUEST)
+            return create_400_response('Invalid Input', 'Email does not exist')
 
         # Make sure Email and Phone match in the account
         user_phone = account.phone.raw_input
         if user_phone != phone:
-            valid_input = False
-            return Response({
-                'status': 'Unauthorized',
-                'message': 'Phone and Email do not match'
-            }, status=status.HTTP_400_BAD_REQUEST)
+            return create_400_response('Unauthorized', 'Phone and email do not match')
 
         # Make sure code matches
         phone_validated = account.validate_phone_auth_code(verification_code)
-        import pdb; pdb.set_trace()
 
         if phone_validated:
             return Response({
@@ -96,10 +109,7 @@ class VerifyPhone(APIView):
                 "message": "Phone number has been verified"
             }, status=status.HTTP_200_OK)
         else:
-            return Response({
-                'status': 'Unauthorized',
-                'message': "Auth code is incorrect"
-            }, status=status.HTTP_400_BAD_REQUEST)
+            return create_400_response('Unauthorized', 'Code was incorrect')
 
 class AuthLogout(APIView):
     serializer_class = AccountSerializer

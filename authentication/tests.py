@@ -129,7 +129,6 @@ class AccountPhoneClientVerificationTest(TestCase):
 
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        import pdb; pdb.set_trace()
         self.assertTrue(updated_account)
         self.assertIsNotNone(updated_account.phone_verification_date)
 

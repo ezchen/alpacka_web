@@ -96,11 +96,21 @@ class Account(AbstractBaseUser):
         return self.phone_auth_code
 
     def validate_phone_auth_code(self, code):
-        phone_matches = self.phone_auth_code == int(code)
+        auth_code_matches = self.phone_auth_code == int(code)
 
-        if phone_matches:
+        if auth_code_matches:
             self.phone_verified = True
             self.phone_verification_date = timezone.now()
             self.save()
 
-        return phone_matches
+        return auth_code_matches
+
+    def validate_email_confirmation_code(self, code):
+        auth_code_matches = self.email_auth_code == code
+
+        if auth_code_matches:
+            self.email_verified = True
+            self.email_verification_date = timezone.now()
+            self.save()
+
+        return auth_code_matches
