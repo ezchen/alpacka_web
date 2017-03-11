@@ -4,4 +4,4 @@ djangorestframework-jwt==1.8.0
 django-phonenumber-field==1.1.0
 overrides==1.7
 django-twilio
-authy
+django-inline-svg

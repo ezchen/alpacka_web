@@ -20,6 +20,7 @@ from django.contrib import admin
 from rest_framework_nested import routers
 from authentication.views import AccountViewSet
 from tasks.views import AccountTasksViewSet, TaskViewSet
+from login_register.views import LandingPageView
 from django.conf.urls.static import static
 from django.views.generic.base import RedirectView
 
@@ -42,7 +43,7 @@ urlpatterns = [
     url(r'^api/v1/auth/', include('authentication.urls')),
 
     # TODO: make catchall route  url('^.*$', IndexView.as_view(), name='index'),
-    url(r'^$', RedirectView.as_view(url="/dashboard", permanent=False), name="index")
+    url(r'^$', LandingPageView.as_view(), name="index")
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

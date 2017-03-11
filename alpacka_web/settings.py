@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework_jwt',
     'django_twilio',
     'twilio_helper',
+    'svg',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -164,6 +165,9 @@ STATICFILES_DIRS = [
     os.path.join(STATIC_ROOT, 'js/'),
     os.path.join(STATIC_ROOT, 'images/'),
     os.path.join(STATIC_ROOT, 'intl-tel-input-9.2.0'),
+    os.path.join(STATIC_ROOT, 'js/landing_js'),
+    os.path.join(STATIC_ROOT, 'images/landing_images'),
+    os.path.join(STATIC_ROOT, 'css/landing_styles')
 ]
 
 AUTH_USER_MODEL = 'authentication.Account'
