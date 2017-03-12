@@ -2,11 +2,11 @@ body, html{
     height: 100%;
     padding-top: 10px !important;
     background-repeat: no-repeat;
-    background-color: #581593 !important;
-    background: -webkit-linear-gradient(#581593, #581593);
-    background: -o-linear-gradient(#581593, #581593);
-    background: -moz-linear-gradient(#581593, #581593);
-    background: linear-gradient(#581593, #581593);
+    background-color: #4527a0 !important;
+    background: -webkit-linear-gradient(#4527a0, #4527a0);
+    background: -o-linear-gradient(#4527a0, #4527a0);
+    background: -moz-linear-gradient(#4527a0, #4527a0);
+    background: linear-gradient(#4527a0, #4527a0);
 }
 
 hr{
@@ -39,3 +39,57 @@ hr{
 }
 
 .iti-flag {background-image: url("static/build/img/flags.png");}
+
+/* label color */
+.pin label {
+  color: #fff !important;
+}
+/* label focus color */
+.pin input[type=text]:focus + label {
+  color: #fff;
+}
+
+.pin input[type=text] {
+  color: white;
+  text-align: center;
+  font-size: 3rem;
+}
+/* label underline focus color */
+.pin input[type=text]:focus {
+  border-bottom: 1px solid #fff;
+  box-shadow: 0 1px 0 0 #fff;
+}
+/* valid color */
+.pin input[type=text].valid {
+  border-bottom: 1px solid #fff;
+  box-shadow: 0 1px 0 0 #fff;
+}
+/* invalid color */
+.pin input[type=text].invalid {
+  border-bottom: 1px solid #fff;
+  box-shadow: 0 1px 0 0 #fff;
+}
+/* icon prefix focus color */
+.pin .prefix.active {
+  color: #fff;
+}
+.logo {
+	float:left;
+  height: 30px;
+  opacity: 0.75;
+}
+
+#phone_verification {
+  height: 60%;
+  display: none;
+  margin-top: 80px;
+}
+
+#all_done {
+  display: none;
+  margin-top: 80px;
+}
+
+.top_bar {
+  width: 85%;
+}

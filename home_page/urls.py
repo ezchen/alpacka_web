@@ -8,8 +8,8 @@ from .views import AcceptedTasksView
 
 app_name = 'home_page'
 urlpatterns = [
-    url(r'^dashboard/', HomePageView.as_view(), name='Home'),
-    url(r'^post_task/', PostTaskView.as_view(), name="post_task"),
-    url(r'^tasks/', AllTasksView.as_view(), name="all_tasks"),
-    url(r'^accepted_tasks/', AcceptedTasksView.as_view(), name="accepted_tasks")
+    #url(r'^dashboard/', HomePageView.as_view(), name='Home'),
+    #url(r'^post_task/', PostTaskView.as_view(), name="post_task"),
+    #url(r'^tasks/', AllTasksView.as_view(), name="all_tasks"),
+    #url(r'^accepted_tasks/', AcceptedTasksView.as_view(), name="accepted_tasks")
 ]

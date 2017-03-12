@@ -47,8 +47,8 @@ class VerificationHelper:
     def verify_input_not_null(self, request):
         data = request.data
 
-        email = data.get('email', None)
-        phone = data.get('phone', None)
+        email = self.request.user.email
+        phone = self.request.user.phone
         verification_code = data.get('verification_code', None)
 
         valid_input = True
@@ -75,10 +75,13 @@ class VerifyPhone(APIView):
     authentication_classes = [JSONWebTokenAuthenticationCookie]
 
     def post(self, request, format=None):
-        data = request.data
+        email = None
+        phone = None
+        if self.request.user and self.request.user.is_authenticated():
+            email = self.request.user.email
+            phone = self.request.user.phone
 
-        email = data.get('email', None)
-        phone = data.get('phone', None)
+        data = request.data
         verification_code = data.get('verification_code', None)
 
         correct_input_and_message = VerificationHelper.verify_input_not_null(self, request)
@@ -102,7 +105,6 @@ class VerifyPhone(APIView):
 
         # Make sure code matches
         phone_validated = account.validate_phone_auth_code(verification_code)
-
         if phone_validated:
             return Response({
                 'status': "OK",
@@ -179,7 +181,7 @@ class AccountViewSet(viewsets.ModelViewSet):
 
         return Response({
             'status': 'Bad request',
-            'message': 'Account could not be created with received data.'
+            'message': serializer.errors
         }, status=status.HTTP_400_BAD_REQUEST)
 
 

@@ -2,42 +2,48 @@
 
 {% block content %}
 {% load static %}
+<link href="{% static "colors/color_palette_deep-purple.css" %}" rel="stylesheet" media="screen">             <!-- Color palette -->
+<link href="{% static "james_typography.css" %}" rel="stylesheet" media="screen">                       <!-- James Framework - TYPOGRAPHY -->
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,900,700,500,300,100' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="{% static "styles.css" %}">
 <link rel="stylesheet" type="text/css" href="{% static "build/css/intlTelInput.css" %} ">
+<div class="container top_bar" >
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <img src="{% static "logo_light.svg" %}" alt="logo" class="logo"/>
+		</div>
+	</div>
+</div>
 <div id="register" class="container">
 	<div class="row main">
-   <div class="panel-title center-align">
-   		<h3 class="white-text">Alpacka</h3>
-   		<hr />
-   	</div>
 		<div class="main-login main-center">
 			<form method="post" action="#">
 
         <div class="row">
 					<div class="input-field col s6">
 						<i class="material-icons prefix">account_circle</i>
-            <input type="text" class="validate" name="first_name" id="first_name">
-            <label for="first_name">First Name</label>
+            <input type="text" class="validate"  name="first_name" id="first_name">
+            <label for="first_name" data-error="invalid first name">First Name</label>
 					</div>
 					<div class="input-field col s6">
-            <input type="text" class="validate" name="last_name" id="last_name">
-            <label for="last_name">Last Name</label>
+            <input type="text" class="validate"  name="last_name" id="last_name">
+            <label for="last_name" data-error="invalid last name">Last Name</label>
 					</div>
         </div>
 
 				<div class="row">
 					<div class="input-field col s12">
 						<i class="material-icons prefix">email</i>
-            <input type="email" class="validate" name="email" id="email">
-            <label for="email">Tufts Email</label>
+            <input type="email" class="validate"  name="email" id="email">
+            <label for="email" data-error="Invalid email. Please use a Tufts email">Tufts Email</label>
 					</div>
 				</div>
 
 				<div class="row">
 					<div class="input-field col s12">
 						<i class="material-icons prefix">phone</i>
-            <input type="tel" class="validate phone-input" name="phone">
-            <label class="phone-field" for="phone">Phone</label>
+            <input type="tel" class="validate phone-input"  name="phone">
+            <label class="phone-field" data-error="Invalid phone input. Example: 1112223333" for="phone">Phone</label>
 						<div class="" id="phone">
 						</div>
 					</div>
@@ -47,20 +53,43 @@
 					<div class="input-field col s12">
 						<i class="material-icons prefix">lock</i>
             <input type="password" class="validate" name="password" id="password">
-            <label for="password">Password</label>
+            <label for="password"  data-error="Invalid Password">Password</label>
 					</div>
 				</div>
 
 				<button type="button" id="btn-login" class="btn center-block btn-block login-button">Register</button>
-				<div class="center-align login-register">
-		            <a href="/login">Login</a>
-		         </div>
 			</form>
 		</div>
 	</div>
 </div>
 
+<div id="all_done" class="">
+	<h4 class="white-text center-align">All done! We'll let you know when Alpacka is released. Thanks for signing up!</h4>
+</div>
+<div id="phone_verification" class="">
+<div id="pin_input" class="container">
+	<div class="row">
+		<h4 class="white-text center-align">Almost done! Just enter the 4 digit code we sent to your phone.</h4>
+	</div>
+	<div class="row">
+		<div class="pin col s3 m2 offset-m2 l2 offset-l2">
+      <input type="text" class="validate" name="pin1" id="pin1" maxlength="1">
+		</div>
+		<div class="pin col s3 m2 l2">
+      <input type="text" class="validate" name="pin2" id="pin2" maxlength="1">
+		</div>
+		<div class="pin col s3 m2 l2">
+      <input type="text" class="validate" name="pin3" id="pin3" maxlength="1">
+		</div>
+		<div class="pin col s3 m2 l2">
+      <input type="text" class="validate" name="pin4" id="pin4" maxlength="1">
+		</div>
+	</div>
+</div>
+</div>
 {% load static %}
 <script src="{% static "register.js" %}"></script>
+<script type = "text/javascript"
+         src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
 {% endblock %}

@@ -13,13 +13,19 @@ testPassword = "password"
 testPhone = "+19174765509"
 
 def create_default_account():
-    account = Account()
-    account.email = testEmail
-    account.first_name = testFirstName
-    account.last_name = testLastName
-    account.testPassword = testPassword
-    account.phone = testPhone
-    account.save()
+    client = Client()
+
+    data = {
+        "first_name": testFirstName,
+        "last_name": testLastName,
+        "email": testEmail,
+        "password": testPassword,
+        "phone": testPhone
+    }
+
+    response = client.post('/api/v1/accounts/', data)
+    data = response.data
+    account = Account.objects.get(email=testEmail)
 
 def get_default_account():
     return Account.objects.get(email=testEmail)
@@ -29,7 +35,7 @@ def login_default_account(client):
         'email': testEmail,
         'password': testPassword
     }
-    client.post('/api/v1/auth/login/', data)
+    return client.post('/api/v1/auth/login/', data)
 
 
 class AccountPhoneVerificationTestCase(TestCase):
@@ -71,7 +77,7 @@ class AccountRegisterClientTestCase(TestCase):
             return
 
     def test_register(self):
-        c = Client()
+        client = Client()
 
         data = {
             "first_name": testFirstName,
@@ -81,7 +87,7 @@ class AccountRegisterClientTestCase(TestCase):
             "phone": testPhone
         }
 
-        response = c.post('/api/v1/accounts/', data)
+        response = client.post('/api/v1/accounts/', data)
         data = response.data
         account = Account.objects.get(email=testEmail)
 
@@ -97,6 +103,18 @@ class AccountRegisterClientTestCase(TestCase):
 
         account.delete()
 
+    def test_login(self):
+        client = Client()
+
+        data = {
+        "email": testEmail,
+        "password": testPassword
+        }
+
+        response = client.post('/api/v1/auth/login', data)
+        self.assertEqual(data['email'], testEmail)
+        print("LOGIN")
+
 class AccountPhoneClientVerificationTest(TestCase):
     def setUp(self):
         pass
@@ -106,11 +124,12 @@ class AccountPhoneClientVerificationTest(TestCase):
         account = get_default_account()
         account.phone_auth_code = 9999
         account.save()
-        login_default_account(client)
+        response = login_default_account(client)
+        print(response)
 
     def test_verify_phone_post_request(self):
-        c = Client()
-        self.register_default_account(c)
+        client = Client()
+        self.register_default_account(client)
 
         account = Account.objects.get(email=testEmail)
         email = account.email
@@ -122,7 +141,7 @@ class AccountPhoneClientVerificationTest(TestCase):
             "phone": phone,
             "verification_code": auth_code
         }
-        response = c.post('/api/v1/auth/verify-phone/', data)
+        response = client.post('/api/v1/auth/verify-phone/', data)
 
 
         updated_account = Account.objects.get(email=testEmail)
@@ -146,24 +165,6 @@ class AccountPhoneClientVerificationTest(TestCase):
         phone = account.phone.raw_input
         auth_code = account.phone_auth_code
 
-        # missing email
-        data1 = {
-            "phone": phone,
-            "verification_code": auth_code
-        }
-
-        response = c.post('/api/v1/auth/verify-phone/', data1)
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-
-        # missing phone
-        data2 = {
-            "email": email,
-            "verification_code": auth_code
-        }
-
-        response = c.post('/api/v1/auth/verify-phone/', data2)
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-
         # missing verification code
         data3 = {
             "email": email,
@@ -171,16 +172,6 @@ class AccountPhoneClientVerificationTest(TestCase):
         }
 
         response = c.post('/api/v1/auth/verify-phone/', data3)
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-
-        # email and phone don't match
-        data4 = {
-            "email": email,
-            "phone": "+11111111111",
-            "verification_code": auth_code
-        }
-
-        response = c.post('/api/v1/auth/verify-phone/', data4)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
         # wrong verification code

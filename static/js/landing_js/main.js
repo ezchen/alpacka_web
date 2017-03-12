@@ -71,7 +71,7 @@ var App = { init: function() { App.HomepageHeight();
 
 	// Scroll To ...
     ScrollToSomeplace: function() {
-    $('#more_info_btn').click(function () {$.scrollTo('#more_info',1000,{easing:'easeInOutExpo','axis':'y'});return false});
+    $('#more_info_btn').click(function () {$.scrollTo('#benefits',1000,{easing:'easeInOutExpo','axis':'y'});return false});
     },
 
 

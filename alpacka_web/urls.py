@@ -27,8 +27,8 @@ from django.views.generic.base import RedirectView
 
 router = routers.SimpleRouter()
 router.register(r'accounts', AccountViewSet)
-router.register(r'tasks', TaskViewSet)
-router.register('accounts/my_account/my_tasks', AccountTasksViewSet)
+#router.register(r'tasks', TaskViewSet)
+#router.register('accounts/my_account/my_tasks', AccountTasksViewSet)
 
 urlpatterns = [
     url(r'^', include('home_page.urls')),
@@ -37,7 +37,7 @@ urlpatterns = [
 
     url(r'^api/v1/', include(router.urls)),
 
-    url(r'^api/v1/courier/', include('tasks.urls')),
+    #url(r'^api/v1/courier/', include('tasks.urls')),
 
     # login, token refresh, verify token
     url(r'^api/v1/auth/', include('authentication.urls')),

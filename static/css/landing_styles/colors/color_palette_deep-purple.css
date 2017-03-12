@@ -25,7 +25,7 @@ textarea:focus {
 	border-bottom: 1px solid #673ab7;
     -webkit-box-shadow: 0 1px 0 0 #673ab7;
     -moz-box-shadow: 0 1px 0 0 #673ab7;
-    box-shadow: 0 1px 0 0 #673ab7; 
+    box-shadow: 0 1px 0 0 #673ab7;
 }
 
 .hero_fullscreen.background_solid {
@@ -33,5 +33,5 @@ textarea:focus {
 }
 
 a {
-	color:#673ab7
+	color:#673ab7;
 }
