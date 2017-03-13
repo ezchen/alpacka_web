@@ -32,7 +32,7 @@
   <div class="empty_state center-align col m6 offset-m3">
     <h5>You Have No Tasks</h5>
     {% load static %}
-    <img src="{% static "task_done.png" %}" alt="My image"/>
+    <img src="{% static "images/task_done.png" %}" alt="My image"/>
     <p>Looks like all of your tasks have been completed! Click <span class="green-text">"Post Task"</span>
       to create a new task.</p>
    <a href="/post_task" class="waves-effect waves-light btn">Post Task</a>
@@ -51,6 +51,6 @@
 </div>
 
 {% load static %}
-<script src="{% static "task_list.js" %}"></script>
+<script src="{% static "js/task_list.js" %}"></script>
 
 {% endblock %}

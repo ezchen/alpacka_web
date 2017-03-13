@@ -10,17 +10,17 @@
 	<link href='http://fonts.googleapis.com/css?family=Roboto:400,900,700,500,300,100' rel='stylesheet' type='text/css'>
 
 	<!-- CSS Files comes here -->
-        <link href="{% static "grid12.css" %}" rel="stylesheet" media="screen">                              	 <!-- Grid System -->
-        <link href="{% static "james_typography.css" %}" rel="stylesheet" media="screen">                       <!-- James Framework - TYPOGRAPHY -->
-        <link href="{% static "main.css" %}" rel="stylesheet" media="screen">                                   <!-- Main CSS file -->
-        <link href="{% static "color_scheme_light.css" %}" rel="stylesheet" media="screen">                      <!-- Color scheme (dark/light)-->
-        <link href="{% static "colors/color_palette_deep-purple.css" %}" rel="stylesheet" media="screen">             <!-- Color palette -->
-        <link href="{% static "rapid-icons.css" %}" rel="stylesheet" media="screen">                            <!-- James Framework - ICONS -->
-        <link href="{% static "js_styles/jquery.maximage.min.css" %}" rel="stylesheet" media="screen">          <!-- MaxImage background image slideshow -->
-        <link href="{% static "responsivity.css" %}" rel="stylesheet" media="screen">                           <!-- Responsive Fixes -->
+        <link href="{% static "css/landing_styles/grid12.css" %}" rel="stylesheet" media="screen">                              	 <!-- Grid System -->
+        <link href="{% static "css/landing_styles/james_typography.css" %}" rel="stylesheet" media="screen">                       <!-- James Framework - TYPOGRAPHY -->
+        <link href="{% static "css/landing_styles/main.css" %}" rel="stylesheet" media="screen">                                   <!-- Main CSS file -->
+        <link href="{% static "css/landing_styles/color_scheme_light.css" %}" rel="stylesheet" media="screen">                      <!-- Color scheme (dark/light)-->
+        <link href="{% static "css/landing_styles/colors/color_palette_deep-purple.css" %}" rel="stylesheet" media="screen">             <!-- Color palette -->
+        <link href="{% static "css/landing_styles/rapid-icons.css" %}" rel="stylesheet" media="screen">                            <!-- James Framework - ICONS -->
+        <link href="{% static "css/landing_styles/js_styles/jquery.maximage.min.css" %}" rel="stylesheet" media="screen">          <!-- MaxImage background image slideshow -->
+        <link href="{% static "css/landing_styles/responsivity.css" %}" rel="stylesheet" media="screen">                           <!-- Responsive Fixes -->
 
 	<!-- Modernizer and IE specyfic files -->
-        <script src="{% static "modernizr.custom.js" %}"></script>
+        <script src="{% static "js/landing_js/modernizr.custom.js" %}"></script>
   </head>
 
   <body>
@@ -46,7 +46,7 @@
 		  	<div class="container top_bar" >
 		  		<div class="row">
 		  			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                            <img src="{% static "logo_light.svg" %}" alt="logo" class="logo"/>
+                                            <img src="{% static "images/logo_light.svg" %}" alt="logo" class="logo"/>
 		  			<nav class="navigation_desktop">
 		  				<ul>
 		  					<li><a href="#more_info" id="more_info_btn" class="btn-flat waves-effect waves-light">More</a></li>
@@ -70,7 +70,7 @@
 					<h6>Register now for exclusive deals and discounts.</h6>
 
 
-	  			<div class="newsletter_form">
+	  			<div id="register-form" class="newsletter_form">
 		  			<button class="btn waves-effect waves-light subscribe-submit" type="submit" name="action" id="register">Register</button>
 	  			</div>
 
@@ -85,14 +85,14 @@
 			<!-- Mockups (put class="mockups" in Homepage section if you want mockups to be shown)-->
 			<!-- /Mockup 1-->
 			<div class="mockup mockup-right mockup-animation1">
-          <img src="{% static "mockups/1/back.png" %}" alt="logo" />
+          <img src="{% static "images/mockups/1/back.png" %}" alt="logo" />
 			</div>
 			<!-- //Mockup 1-->
 
 
 			<!-- /Mockup 2-->
 			<div class="mockup mockup-right mockup-animation2">
-          <img src="{% static "mockups/1/front.png" %}" alt="logo" />
+          <img src="{% static "images/mockups/1/front.png" %}" alt="logo" />
 			</div>
 			<!-- //Mockup 2-->
 
@@ -124,7 +124,7 @@
 				<div class="row">
           <div class="col-md-4 col-lg-4">
             <div class="align-center promo">
-              <img src="{% static 'svg/todolist.svg' %}" alt="Todo list"/>
+              <img src="{% static 'images/svg/todolist.svg' %}" alt="Todo list"/>
               <p class="align-center promo-caption"><h5>Get things done.</h5></p>
               Get your favorite meal delivered from Hodgedon. Get your laundry done. Post an ad for a psych study.
               Just describe the task and name a price, and you're done.
@@ -132,7 +132,7 @@
           </div>
           <div class="col-md-4 col-lg-4">
             <div class="align-center promo">
-              <img src="{% static 'svg/school.svg' %}" alt="School"/>
+              <img src="{% static 'images/svg/school.svg' %}" alt="School"/>
               <p class="align-center promo-caption"><h5>A trusted college community.</h5></p>
               Alpacka will only connect you with people from your respective University or college.
               No sketchy users. No worries. No risk.
@@ -140,7 +140,7 @@
           </div>
           <div class="col-md-4 col-lg-4">
             <div class="align-center promo">
-              <img src="{% static 'svg/coins.svg' %}" alt="Money"/>
+              <img src="{% static 'images/svg/coins.svg' %}" alt="Money"/>
               <p class="align-center promo-caption"><h5>No hours. Easy income.</h5></p>
               Sign up to become a tasker, and start helping your peers. Accept tasks on the fly, and get paid.
               Who knew making money could be so easy?
@@ -215,20 +215,20 @@
 
 
 	<!-- JavaScript plugins comes here -->
-    <script src="{% static "jquery-2.1.3.min.js" %}"></script>        <!-- jQuery -->
-    <script src="{% static "jquery.easing.min.js" %}"></script>       <!-- jQuery easing -->
-    <script src="{% static "jquery.scrollTo.js" %}"></script>         <!-- Scroll to -->
-    <script src="{% static "jquery.cycle.all.min.js" %}"></script>    <!-- jQuery cycle -->
-    <script src="{% static "jquery.form.js" %}"></script>    		  <!-- jQuery form -->
-    <script src="{% static "jquery.maximage.min.js" %}"></script>     <!-- MaxImage background image slideshow -->
-    <script src="{% static "materialize.js" %}"></script>     		  <!-- Materialize -->
-    <script src="{% static "classie.js" %}"></script>                 <!-- Class helper function -->
-        <script src="{% static "pathLoader.js" %}"></script>              <!-- Preloader Loading Animation -->
-        <script src="{% static "preloader.js" %}"></script>               <!-- Preloader -->
-    <script src="{% static "count_down.js" %}"></script>              <!-- Count Down Timer -->
-    <script src="{% static "happy.js" %}"></script>                   <!-- Newsletter form validation -->
-    <script src="{% static "happy.methods.js" %}"></script>           <!-- Newsletter form validation -->
-    <script src="{% static "main.js" %}"></script>                    <!-- Main Js file -->
+    <script src="{% static "js/landing_js/jquery-2.1.3.min.js" %}"></script>        <!-- jQuery -->
+    <script src="{% static "js/landing_js/jquery.easing.min.js" %}"></script>       <!-- jQuery easing -->
+    <script src="{% static "js/landing_js/jquery.scrollTo.js" %}"></script>         <!-- Scroll to -->
+    <script src="{% static "js/landing_js/jquery.cycle.all.min.js" %}"></script>    <!-- jQuery cycle -->
+    <script src="{% static "js/landing_js/jquery.form.js" %}"></script>    		  <!-- jQuery form -->
+    <script src="{% static "js/landing_js/jquery.maximage.min.js" %}"></script>     <!-- MaxImage background image slideshow -->
+    <script src="{% static "js/landing_js/materialize.js" %}"></script>     		  <!-- Materialize -->
+    <script src="{% static "js/landing_js/classie.js" %}"></script>                 <!-- Class helper function -->
+        <script src="{% static "js/landing_js/pathLoader.js" %}"></script>              <!-- Preloader Loading Animation -->
+        <script src="{% static "js/landing_js/preloader.js" %}"></script>               <!-- Preloader -->
+    <script src="{% static "js/landing_js/count_down.js" %}"></script>              <!-- Count Down Timer -->
+    <script src="{% static "js/landing_js/happy.js" %}"></script>                   <!-- Newsletter form validation -->
+    <script src="{% static "js/landing_js/happy.methods.js" %}"></script>           <!-- Newsletter form validation -->
+    <script src="{% static "js/landing_js/main.js" %}"></script>                    <!-- Main Js file -->
 
 
     <!-- Show message after newsletter form submit -->

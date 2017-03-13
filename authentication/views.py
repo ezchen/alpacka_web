@@ -2,8 +2,6 @@ import json
 
 from django.shortcuts import render
 
-from authy.api import AuthyApiClient
-
 from overrides import overrides
 
 from rest_framework import permissions, viewsets, status
