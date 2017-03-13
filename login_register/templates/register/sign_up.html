@@ -2,15 +2,15 @@
 
 {% block content %}
 {% load static %}
-<link href="{% static "colors/color_palette_deep-purple.css" %}" rel="stylesheet" media="screen">             <!-- Color palette -->
-<link href="{% static "james_typography.css" %}" rel="stylesheet" media="screen">                       <!-- James Framework - TYPOGRAPHY -->
+<link href="{% static "css/landing_styles/colors/color_palette_deep-purple.css" %}" rel="stylesheet" media="screen">             <!-- Color palette -->
+<link href="{% static "css/landing_styles/james_typography.css" %}" rel="stylesheet" media="screen">                       <!-- James Framework - TYPOGRAPHY -->
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,900,700,500,300,100' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" type="text/css" href="{% static "styles.css" %}">
-<link rel="stylesheet" type="text/css" href="{% static "build/css/intlTelInput.css" %} ">
+<link rel="stylesheet" type="text/css" href="{% static "css/styles.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "intl-tel-input-9.2.0/build/css/intlTelInput.css" %} ">
 <div class="container top_bar" >
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <img src="{% static "logo_light.svg" %}" alt="logo" class="logo"/>
+      <img src="{% static "images/logo_light.svg" %}" alt="logo" class="logo"/>
 		</div>
 	</div>
 </div>
@@ -87,8 +87,7 @@
 	</div>
 </div>
 </div>
-{% load static %}
-<script src="{% static "register.js" %}"></script>
+<script src="{% static "js/register.js" %}"></script>
 <script type = "text/javascript"
          src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 

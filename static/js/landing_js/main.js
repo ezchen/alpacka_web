@@ -1,17 +1,11 @@
 (function($) {
 var App = { init: function() { App.HomepageHeight();
                                App.HomepageOpacity();
-							   App.MaxImage_Video();
 							   App.MaxImage_Slider();
 							   App.MaxImage_Single();
 							   App.ScrollToSomeplace();
 							   App.Count_Down();
 							   App.ContactForm();
-
-                 document.getElementById("register").onclick = function () {
-                   location.href = "/register";
-                 };
-
                },
 
 
@@ -33,26 +27,6 @@ var App = { init: function() { App.HomepageHeight();
             $('#maximage_single').css('opacity', (1-st/h) );
         });
     },
-
-
-	// MaxImage Fullscreen Background Slider
-	MaxImage_Video: function() {
-	"use strict";
-	    jQuery('video, object').maximage('maxcover');
-
-	    // detecting if browser is mobile and disabling the video background, leaving only poster as bg.
-		if( navigator.userAgent.match(/Android/i)
-		|| navigator.userAgent.match(/webOS/i)
-		|| navigator.userAgent.match(/iPhone/i)
-		|| navigator.userAgent.match(/iPad/i)
-		|| navigator.userAgent.match(/iPod/i)
-		|| navigator.userAgent.match(/BlackBerry/i)
-		|| navigator.userAgent.match(/Windows Phone/i)
-		 ){
-		    $('#maximage_video video').css('display', 'none' );
-		    classie.add( document.getElementById( 'maximage_video' ), 'mobile_novideo' );
-		  };
-	},
 
 
 	// MaxImage Fullscreen Background Slider
@@ -100,6 +74,10 @@ var App = { init: function() { App.HomepageHeight();
 $(function() {
   App.init();
   $(window).resize(App.HomepageHeight);
+	$('#register').on('touchstart click', function() {
+		location.href = "/register";
+	});
+
 });
 
 })(jQuery);

@@ -1051,3 +1051,11 @@ label {
 .promo-headline {
   margin-bottom: 5rem;
 }
+
+#register {
+	cursor: pointer;
+}
+
+#register-form {
+	cursor: pointer;
+}

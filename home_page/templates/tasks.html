@@ -22,7 +22,7 @@
   <div class="empty_state center-align col m6 offset-m3">
     <h5>No Tasks Posted</h5>
     {% load static %}
-    <img src="{% static "box.png" %}" alt="My image"/>
+    <img src="{% static "images/box.png" %}" alt="My image"/>
     <p>Aw... Looks like there are no tasks posted currently. Check back later or click <span class="green-text">"Post Task"</span>
       to create a task of your own.</p>
    <a href="/post_task" class="waves-effect waves-light btn">Post Task</a>
@@ -41,6 +41,6 @@
 </div>
 
 {% load static %}
-<script src="{% static "tasks.js" %}"></script>
+<script src="{% static "js/tasks.js" %}"></script>
 
 {% endblock %}
