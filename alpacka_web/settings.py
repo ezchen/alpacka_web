@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = secret_settings.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '138.197.32.197', 'alpacka.us']
 
@@ -153,21 +153,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+if DEBUG == True:
+    STATIC_ROOT = os.path.join(BASE_DIR, '..', "static")
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(STATIC_ROOT, 'css/'),
-    os.path.join(STATIC_ROOT, 'admin/'),
-    os.path.join(STATIC_ROOT, 'admin/css'),
-    os.path.join(STATIC_ROOT, 'admin/fonts'),
-    os.path.join(STATIC_ROOT, 'admin/img'),
-    os.path.join(STATIC_ROOT, 'admin/js'),
-    os.path.join(STATIC_ROOT, 'js/'),
-    os.path.join(STATIC_ROOT, 'images/'),
-    os.path.join(STATIC_ROOT, 'intl-tel-input-9.2.0'),
-    os.path.join(STATIC_ROOT, 'js/landing_js'),
-    os.path.join(STATIC_ROOT, 'images/landing_images'),
-    os.path.join(STATIC_ROOT, 'css/landing_styles')
-]
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 AUTH_USER_MODEL = 'authentication.Account'

@@ -23,6 +23,7 @@ from tasks.views import AccountTasksViewSet, TaskViewSet
 from login_register.views import LandingPageView
 from django.conf.urls.static import static
 from django.views.generic.base import RedirectView
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 
 router = routers.SimpleRouter()
@@ -47,3 +48,6 @@ urlpatterns = [
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+if settings.DEBUG == True:
+    urlpatterns += staticfiles_urlpatterns()
