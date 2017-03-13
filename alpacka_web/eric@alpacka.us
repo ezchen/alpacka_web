@@ -1,0 +1,16 @@
+SECRET_KEY = 'ckihu%+oy8f07r4+2$uf-hl+cxs#y^_$7-(+qorteac3tn3*vu'
+
+TWILIO_ACCOUNT_SID = 'AC0c320495e892737042a260b31c281faa'
+TWILIO_AUTH_TOKEN = '340c15fb880ff1690e35a80fa2caf65d'
+TWILIO_PHONE = '+16466817209'
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'alpacka',
+        'USER': 'eric',
+        'PASSWORD': 'mypassword',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+}
