@@ -40,6 +40,10 @@ hr{
 
 .iti-flag {background-image: url("static/build/img/flags.png");}
 
+#register input {
+  font-size: 1.3rem;
+}
+
 /* label color */
 .pin label {
   color: #fff !important;
